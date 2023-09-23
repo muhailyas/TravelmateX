@@ -4,7 +4,7 @@ import 'package:travelmatex/routes/app_routes.dart';
 import 'package:travelmatex/services/auth_services.dart';
 import 'package:rive/rive.dart';
 import '../../utils/constants/constants.dart';
-import '../widgets/text_form_fild_widget.dart';
+import '../widgets/text_field/text_form_fild_widget.dart';
 
 final _formKey = GlobalKey<FormState>();
 

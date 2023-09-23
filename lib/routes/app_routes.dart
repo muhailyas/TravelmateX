@@ -1,5 +1,5 @@
 class AppRoutes {
-  static String main = '/';
+  static String main = '/main';
   static String home = '/home';
   static String splash = '/splash';
   static String login = '/login';

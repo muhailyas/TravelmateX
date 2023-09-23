@@ -7,6 +7,7 @@ import 'package:travelmatex/routes/app_routes.dart';
 import 'package:travelmatex/utils/constants/constants.dart';
 import 'package:travelmatex/views/auth/auth_screen.dart';
 import 'package:travelmatex/views/home/home_screen.dart';
+import 'package:travelmatex/views/main_page/main_page.dart';
 import 'package:travelmatex/views/splash/splash_screen.dart';
 
 void main() async {
@@ -24,7 +25,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     sizeDefine(context);
     return GetMaterialApp(
+      
       getPages: [
+        GetPage(name: AppRoutes.main, page: () => MainScreen()),
         GetPage(name: AppRoutes.home, page: () => const HomeScreen()),
         GetPage(
             name: AppRoutes.login,

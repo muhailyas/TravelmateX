@@ -64,7 +64,7 @@ class AuthServices {
     }
   }
 
-  static Future<ValidationResults> signoutUser(context) async {
+  static Future<ValidationResults> signoutUser() async {
     var connectivityResult = await Connectivity().checkConnectivity();
     if (connectivityResult == ConnectivityResult.none) {
       return ValidationResults.noInternetConnection;
