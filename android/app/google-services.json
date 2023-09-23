@@ -1,0 +1,118 @@
+{
+  "project_info": {
+    "project_number": "326398993054",
+    "project_id": "travelmate-a7b2e",
+    "storage_bucket": "travelmate-a7b2e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326398993054:android:5ead0e3d98b0823671d18f",
+        "android_client_info": {
+          "package_name": "com.example.travelmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326398993054-dc6vdlh65iv0krqtnrfjnmh5opd0ej2g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4C334WGd_7nXtFs6tNpCDNtFhnQpzvyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326398993054-dc6vdlh65iv0krqtnrfjnmh5opd0ej2g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "326398993054-of1sv4evhoi35p7quo46qelfmcuaqe0k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.travelmate.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326398993054:android:8d5f516437caa2fd71d18f",
+        "android_client_info": {
+          "package_name": "com.example.travelmatex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326398993054-dc6vdlh65iv0krqtnrfjnmh5opd0ej2g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4C334WGd_7nXtFs6tNpCDNtFhnQpzvyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326398993054-dc6vdlh65iv0krqtnrfjnmh5opd0ej2g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "326398993054-of1sv4evhoi35p7quo46qelfmcuaqe0k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.travelmate.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326398993054:android:5244df3dfca1543771d18f",
+        "android_client_info": {
+          "package_name": "com.waywizard.travelmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326398993054-dc6vdlh65iv0krqtnrfjnmh5opd0ej2g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4C334WGd_7nXtFs6tNpCDNtFhnQpzvyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326398993054-dc6vdlh65iv0krqtnrfjnmh5opd0ej2g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "326398993054-of1sv4evhoi35p7quo46qelfmcuaqe0k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.travelmate.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
