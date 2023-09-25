@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-
 import '../models/destination_model.dart';
 
 class DestinationRepo {
@@ -174,15 +173,4 @@ class DestinationRepo {
       }).toList();
     }
   }
-
-  getfiltered() async {
-    // List<Destination> filteredDestinations = await DestinationRepo()
-    //     .filterDestinations(
-    //         selectedCategories: selectedCategoriesFB,
-    //         selectedDistricts: selectedDistrictsFB);
-    // filteredDestination.value = filteredDestinations;
-  }
 }
-
-List<String>? selectedDistrictsFB = [];
-List<String>? selectedCategoriesFB = [];

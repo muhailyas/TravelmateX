@@ -1,80 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelmatex/controllers/filter_controller.dart';
+import 'package:travelmatex/utils/colors/colors.dart';
 import 'package:travelmatex/utils/constants/constants.dart';
-import 'package:travelmatex/utils/constants/lists.dart';
-import 'widgets/filter_check_box_widget/filter_check_box_widget.dart';
 
-class ExploreScreen extends StatelessWidget {
-  ExploreScreen({super.key});
-  final FilterController filterController = Get.put(FilterController());
+class CategoryListScreen extends StatelessWidget {
+  CategoryListScreen({super.key});
+  final filterController = Get.find<FilterController>();
 
   @override
   Widget build(BuildContext context) {
-    filterController.getFiltered();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Text(
-            "Explore ",
-            style: googleFontStyle(fontweight: FontWeight.w500, fontsize: 25),
-          ),
+    final arguments = Get.arguments;
+    final String category = arguments['argument1'];
+    filterController.getDestinationByCategory(category);
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios_new_rounded,
+                color: Colors.black),
+            onPressed: () {
+              Get.back();
+            }),
+        backgroundColor: backGroundColor,
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          category,
+          style: googleFontStyle(fontweight: FontWeight.w400, fontsize: 22),
         ),
-        const SizedBox(height: 5),
-        SizedBox(
-          height: screenHeight * 0.05,
-          width: double.infinity,
-          child: ListView.builder(
-            itemCount: districts.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              final district = districts[index];
-              return FilterCheckBox(
-                title: district,
-                onTap: () {
-                  filterController.toggleDistrict(district);
-                },
-              );
-            },
-          ),
-        ),
-        const SizedBox(height: 5),
-        SizedBox(
-          height: screenHeight * 0.05,
-          width: double.infinity,
-          child: ListView.builder(
-            itemCount: categories.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              final category = categories[index][0];
-              return FilterCheckBox(
-                title: category,
-                onTap: () {
-                  filterController.toggleCategory(category);
-                },
-                isCategory: true,
-              );
-            },
-          ),
-        ),
-        Expanded(
-          child: Obx(() {
-            if (filterController.filteredList.isEmpty) {
-              return Center(
-                child: Text(
-                  "Try another way !",
-                  style: googleFontStyle(fontweight: FontWeight.w500),
-                ),
-              );
+      ),
+      body: FutureBuilder(
+          future: Future.delayed(const Duration(seconds: 1)),
+          builder: (context, value) {
+            if (value.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
             }
-            return SizedBox(
-              height: screenHeight,
-              width: double.infinity,
-              child: ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                itemCount: filterController.filteredList.length,
+            return Obx(() {
+              if (filterController.destinationByCateogryList.isEmpty) {
+                return const Center(
+                  child: Text("Not found"),
+                );
+              }
+              return ListView.builder(
+                itemCount: filterController.destinationByCateogryList.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return Padding(
@@ -84,7 +52,8 @@ class ExploreScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                           image: DecorationImage(
                               image: NetworkImage(filterController
-                                  .filteredList[index].destinationImageUrls[0]),
+                                  .destinationByCateogryList[index]
+                                  .destinationImageUrls[0]),
                               fit: BoxFit.cover),
                           borderRadius: BorderRadius.circular(25)),
                       child: Align(
@@ -108,7 +77,8 @@ class ExploreScreen extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        filterController.filteredList[index]
+                                        filterController
+                                            .destinationByCateogryList[index]
                                             .destinationName,
                                         style: googleFontStyle(
                                             fontweight: FontWeight.w500,
@@ -117,7 +87,7 @@ class ExploreScreen extends StatelessWidget {
                                                 17),
                                       ),
                                       Text(
-                                          "${filterController.filteredList[index].destinationDistrict}, ${filterController.filteredList[index].destinationCategory}",
+                                          "${filterController.destinationByCateogryList[index].destinationDistrict}, ${filterController.destinationByCateogryList[index].destinationCategory}",
                                           style: googleFontStyle(
                                               fontsize: MediaQuery.of(context)
                                                       .textScaleFactor *
@@ -135,11 +105,9 @@ class ExploreScreen extends StatelessWidget {
                     ),
                   );
                 },
-              ),
-            );
+              );
+            });
           }),
-        )
-      ],
     );
   }
 }

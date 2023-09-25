@@ -4,17 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelmatex/utils/constants/constants.dart';
 
+final _formKey = GlobalKey<FormState>();
+
 class EditTileWidget extends StatelessWidget {
   EditTileWidget({super.key, required this.userDocRef});
   final DocumentReference userDocRef;
 
-  final _formKey = GlobalKey<FormState>();
   final updateNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: const Icon(Icons.edit, color: Colors.black),
+      leading: const Icon(
+        Icons.edit),
       title: Text(
         "Edit name",
         style: googleFontStyle(fontsize: 18, fontweight: FontWeight.w400),
@@ -84,8 +86,7 @@ class EditTileWidget extends StatelessWidget {
                         TextButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              String updatedName =
-                                  updateNameController.text;
+                              String updatedName = updateNameController.text;
                               updateNameInFirestore(updatedName);
                               Navigator.pop(context);
                             }

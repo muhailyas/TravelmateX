@@ -19,8 +19,6 @@ class HomeScreen extends StatelessWidget {
       Get.put<DestinationController>(DestinationController());
   @override
   Widget build(BuildContext context) {
-    destinationController.fetchDestinations();
-    destinationController.fetchDestinationNearbyMe(null);
     final user = FirebaseAuth.instance.currentUser;
     final DocumentReference userDocRef =
         FirebaseFirestore.instance.collection('users').doc(user!.uid);
@@ -78,12 +76,15 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
-          SearchFieldWidget(searchController: searchController, destinationController: destinationController),
+          SearchFieldWidget(
+              searchController: searchController,
+              destinationController: destinationController),
           height10,
           GetX<SearchControllerHome>(
             builder: (controller) {
               return searchController.isSearching.value
-                  ? SearchContentWidget(destinationController: destinationController)
+                  ? SearchContentWidget(
+                      destinationController: destinationController)
                   : WholeContentWidget();
             },
           )

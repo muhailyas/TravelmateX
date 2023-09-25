@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:travelmatex/controllers/destination_controller.dart';
 import 'package:travelmatex/controllers/search_controller.dart';
@@ -36,7 +35,6 @@ class SearchFieldWidget extends StatelessWidget {
         decoration: const InputDecoration(
             prefixIcon: Icon(Icons.search_rounded, color: Colors.black),
             hintText: 'Search destination...',
-            hintTextDirection: TextDirection.ltr,
             border: OutlineInputBorder(borderSide: BorderSide.none)),
       ),
     );

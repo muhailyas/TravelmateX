@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:travelmatex/controllers/destination_controller.dart';
 import 'package:travelmatex/models/destination_model.dart';
+import 'package:travelmatex/utils/colors/colors.dart';
 import 'package:travelmatex/utils/constants/constants.dart';
 
 class DestinationCardWidget extends StatelessWidget {
@@ -34,7 +34,7 @@ class DestinationCardWidget extends StatelessWidget {
         child: Container(
           width: 205,
           decoration: const BoxDecoration(
-              color: Colors.white,
+              color: whiteColor,
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(20),
                   topLeft: Radius.circular(20),

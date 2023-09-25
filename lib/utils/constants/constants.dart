@@ -3,6 +3,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rive/rive.dart';
 
 enum ValidationResults {
   successfull,
@@ -62,4 +63,12 @@ Future<Network> checkConnection() async {
   }
 }
 
-// custom snakbar
+// show loading
+void showLoading(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return const RiveAnimation.asset('assets/loading animation.riv');
+    },
+  );
+}

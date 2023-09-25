@@ -41,3 +41,21 @@ List<List<String>> categories = [
     'Waterbodies',
   ],
 ];
+
+List<String> districts = [
+  'Kasaragod',
+  'Kannur',
+  'Wayanad',
+  'Kozhikkode',
+  'Malappuram',
+  'Palakkad',
+  'Thrissur',
+  'Eranakulam',
+  'Idukki',
+  'Kottayam',
+  'Alappuzha',
+  'Pathanamthitta',
+  'Kollam',
+  'Thiruvanthapuram',
+];
+

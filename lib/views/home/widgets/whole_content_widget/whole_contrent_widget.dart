@@ -46,7 +46,7 @@ class WholeContentWidget extends StatelessWidget {
             return const CircularProgressIndicator();
           }
           return SizedBox(
-            height: 330,
+            height: screenHeight * 0.33,
             width: double.infinity,
             child: ListView.builder(
               itemCount: controller.destinations.length,

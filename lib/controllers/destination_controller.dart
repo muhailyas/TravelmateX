@@ -14,15 +14,17 @@ class DestinationController extends GetxController {
   void fetchDestinationNearbyMe(String? district) async {
     final allDestinations = await DestinationRepo().fetchDestinations();
     if (district != null && district.isNotEmpty) {
-      destinationsNearbyMe.value = allDestinations.reversed
-          .where((destination) =>
-              destination.destinationDistrict.toLowerCase() ==
-              district.toLowerCase())
+      destinationsNearbyMe.value = allDestinations
+          .where((destination) => destination.destinationDistrict
+              .toLowerCase()
+              .contains(district.toLowerCase()))
           .toList();
-      destinationsNearbyMe.isNotEmpty ? isNearBy.value = true : false;
-    } else {
+      destinationsNearbyMe.isNotEmpty
+          ? isNearBy.value = true
+          : isNearBy.value = false;
+    }
+    if (!isNearBy.value) {
       destinationsNearbyMe.value = allDestinations.reversed.toList();
-      isNearBy.value = false;
     }
   }
 
