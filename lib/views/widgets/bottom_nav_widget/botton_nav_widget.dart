@@ -18,8 +18,6 @@ class BottomNaviagationWidget extends StatelessWidget {
           FlashyTabBarItem(
               icon: const Icon(Icons.explore), title: const Text('Explore')),
           FlashyTabBarItem(
-              icon: const Icon(Icons.search), title: const Text('Search')),
-          FlashyTabBarItem(
               icon: const Icon(Icons.flight_takeoff),
               title: const Text('Trip plan')),
           FlashyTabBarItem(

@@ -15,7 +15,7 @@ class AppRoutes {
 
   static List<GetPage<dynamic>>? getPages = [
     GetPage(name: AppRoutes.main, page: () => MainScreen()),
-    GetPage(name: AppRoutes.home, page: () => const HomeScreen()),
+    GetPage(name: AppRoutes.home, page: () =>  HomeScreen()),
     GetPage(name: AppRoutes.about, page: () => const AboutScreen()),
     GetPage(
         name: AppRoutes.login,

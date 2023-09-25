@@ -33,6 +33,10 @@ void sizeDefine(BuildContext context) {
 final height10 = SizedBox(height: screenHeight * 0.02);
 final height20 = SizedBox(height: screenHeight * 0.04);
 
+// constant width
+
+final width10 = SizedBox(width: screenWidth * 0.02);
+
 // constant style
 
 googleFontStyle(

@@ -14,7 +14,7 @@ class SplashScreen extends StatelessWidget {
     if (networkAvailability == Network.notAvailable) {
       // add here route
     }
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 1));
     if (result == ValidationResults.loggedIn) {
       Get.offAllNamed(AppRoutes.main);
     } else {

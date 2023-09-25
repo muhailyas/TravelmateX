@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:travelmatex/routes/app_routes.dart';
 import 'package:travelmatex/utils/constants/constants.dart';
 import 'package:travelmatex/views/slide_drawer/widgets/edit_tile/edit_tile_widget.dart';
@@ -28,7 +27,7 @@ class SlideDrawer extends StatelessWidget {
             leading: const Icon(Icons.ios_share_rounded),
             title: Text("Share", style: googleFontStyle(fontsize: 18, fontweight: FontWeight.w400),),
             onTap: () async {
-              await _onShare(context);
+              // await _onShare(context);
             },
           ),
           const Divider(),
@@ -47,11 +46,11 @@ class SlideDrawer extends StatelessWidget {
     );
   }
 
-  _onShare(context) async {
-    final box = context.findRenderObject() as RenderBox?;
-    await Share.share(
-        'https://play.google.com/store/apps/details?id=com.waywizard.travelmate',
-        subject: '',
-        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
-  }
+  // _onShare(context) async {
+  //   final box = context.findRenderObject() as RenderBox?;
+  //   await Share.share(
+  //       'https://play.google.com/store/apps/details?id=com.waywizard.travelmate',
+  //       subject: '',
+  //       sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+  // }
 }
