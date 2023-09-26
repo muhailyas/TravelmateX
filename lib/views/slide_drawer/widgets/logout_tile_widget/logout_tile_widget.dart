@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelmatex/routes/app_routes.dart';
 import 'package:travelmatex/services/auth_services.dart';
+import 'package:travelmatex/utils/colors/colors.dart';
 import 'package:travelmatex/utils/constants/constants.dart';
 
 class LogoutTileWidget extends StatelessWidget {
@@ -25,6 +26,9 @@ class LogoutTileWidget extends StatelessWidget {
                   content: const Text('Are you sure want to Logout'),
                   actions: [
                     TextButton.icon(
+                        style: const ButtonStyle(
+                            foregroundColor:
+                                MaterialStatePropertyAll(blackColor)),
                         onPressed: () async {
                           ValidationResults result =
                               await AuthServices.signoutUser();
@@ -33,13 +37,16 @@ class LogoutTileWidget extends StatelessWidget {
                             Get.snackbar(
                                 'Network', 'Check your internet connection');
                           } else {
-                            Get.offNamedUntil(
-                                AppRoutes.login, (route) => false);
+                            Get.offAllNamed(
+                                AppRoutes.login);
                           }
                         },
                         icon: const Icon(Icons.check),
                         label: const Text('Yes')),
                     TextButton.icon(
+                        style: const ButtonStyle(
+                            foregroundColor:
+                                MaterialStatePropertyAll(blackColor)),
                         onPressed: () {
                           Get.back();
                         },

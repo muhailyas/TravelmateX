@@ -14,6 +14,6 @@ class BottomBarController extends GetxController {
      HomeScreen(),
      ExploreScreen(),
     const TripPlansScreen(),
-    const FavoriteScreen(),
+     FavoriteScreen(),
   ].obs;
 }

@@ -5,7 +5,7 @@ import 'package:travelmatex/controllers/bottom_controller.dart';
 
 class BottomNaviagationWidget extends StatelessWidget {
   BottomNaviagationWidget({super.key});
-  final bottomController = Get.put(BottomBarController());
+  final bottomController = Get.find<BottomBarController>();
 
   @override
   Widget build(BuildContext context) {

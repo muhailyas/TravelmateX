@@ -46,6 +46,9 @@ dependencies:
   flashy_tab_bar2: ^0.0.6
   geolocator: ^10.1.0
   geocoding: ^2.1.0
+  carousel_slider: ^4.2.1
+  url_launcher: ^6.1.14
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

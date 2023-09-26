@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:travelmatex/dependency_injection.dart';
 import 'package:travelmatex/firebase_options.dart';
 import 'package:travelmatex/routes/app_routes.dart';
 import 'package:travelmatex/utils/constants/constants.dart';
@@ -12,6 +13,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  DependencyInjection.onInit();
   runApp(const MyApp());
 }
 
@@ -31,9 +33,9 @@ class MyApp extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const CircularProgressIndicator();
             } else if (snapshot.hasData) {
-              return const SplashScreen(result: ValidationResults.loggedIn);
+              return SplashScreen(result: ValidationResults.loggedIn);
             } else {
-              return const SplashScreen(result: ValidationResults.newUser);
+              return SplashScreen(result: ValidationResults.newUser);
             }
           }),
     );

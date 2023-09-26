@@ -13,16 +13,15 @@ import 'widgets/whole_content_widget/whole_contrent_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-  final searchController =
-      Get.put<SearchControllerHome>(SearchControllerHome());
-  final destinationController =
-      Get.put<DestinationController>(DestinationController());
+  final destinationController = Get.find<DestinationController>();
+  final searchController = Get.find<SearchControllerHome>();
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
     final DocumentReference userDocRef =
         FirebaseFirestore.instance.collection('users').doc(user!.uid);
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Column(
         children: [
           height10,

@@ -1,31 +1,70 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:travelmatex/controllers/favorite_controller.dart';
+import 'package:travelmatex/dependency_injection.dart';
 import 'package:travelmatex/routes/app_routes.dart';
+import 'package:travelmatex/utils/colors/colors.dart';
 import 'package:travelmatex/utils/constants/constants.dart';
 
 validationResult(ValidationResults result, ValidationResults prevResult) {
+  final favoriteController = Get.put(FavoriteController());
   Get.back();
   if (result == ValidationResults.noInternetConnection) {
-    Get.snackbar('wrong', 'check your connection', backgroundColor: Colors.red);
+    Get.rawSnackbar(
+        messageText: Text('check your connection',
+            style: googleFontStyle(
+                fontsize: 17, fontweight: FontWeight.w400, color: whiteColor)),
+        backgroundColor: Colors.red);
   } else if (result == ValidationResults.successfull) {
     if (prevResult == ValidationResults.newUser) {
-      Get.snackbar('successfull', 'Registration Successfully',
+      Get.rawSnackbar(
+          messageText: Text('Registration Successfully',
+              style: googleFontStyle(
+                  fontsize: 17,
+                  fontweight: FontWeight.w400,
+                  color: whiteColor)),
           backgroundColor: Colors.green);
-      Get.offNamedUntil(AppRoutes.login, (route) => false);
+      Get.offAllNamed(AppRoutes.login);
     } else {
-      Get.snackbar('successfull', 'Login Successfully',
+      DependencyInjection.onInit();
+      Get.offAllNamed(AppRoutes.main);
+      Get.rawSnackbar(
+          messageText: Text('Login Successfully',
+              style: googleFontStyle(
+                  fontsize: 17,
+                  fontweight: FontWeight.w400,
+                  color: whiteColor)),
           backgroundColor: Colors.green);
-      Get.offNamedUntil(AppRoutes.main, (route) => false);
+      favoriteController.initFavorites();
     }
   } else if (result == ValidationResults.emailAlreadyInUse) {
-    Get.snackbar('wrong', 'email already exist', backgroundColor: Colors.red);
+    Get.rawSnackbar(
+        messageText: Text('email already exist',
+            style: googleFontStyle(
+                fontsize: 17, fontweight: FontWeight.w400, color: whiteColor)),
+        backgroundColor: Colors.red);
   } else if (result == ValidationResults.userNotFound) {
-    Get.snackbar('wrong', 'user not found', backgroundColor: Colors.red);
+    Get.rawSnackbar(
+        messageText: Text('user not found',
+            style: googleFontStyle(
+                fontsize: 17, fontweight: FontWeight.w400, color: whiteColor)),
+        backgroundColor: Colors.red);
   } else if (result == ValidationResults.weakPassword) {
-    Get.snackbar('wrong', 'weak password', backgroundColor: Colors.red);
+    Get.rawSnackbar(
+        messageText: Text('weak password',
+            style: googleFontStyle(
+                fontsize: 17, fontweight: FontWeight.w400, color: whiteColor)),
+        backgroundColor: Colors.red);
   } else if (result == ValidationResults.wrongPassword) {
-    Get.snackbar('wrong', 'wrong password', backgroundColor: Colors.red);
+    Get.rawSnackbar(
+        messageText: Text('wrong password',
+            style: googleFontStyle(
+                fontsize: 17, fontweight: FontWeight.w400, color: whiteColor)),
+        backgroundColor: Colors.red);
   } else {
-    Get.snackbar('wrong', 'something went wrong', backgroundColor: Colors.red);
+    Get.rawSnackbar(
+        messageText: Text('something went wrong',
+            style: googleFontStyle(fontsize: 17, fontweight: FontWeight.w400)),
+        backgroundColor: Colors.red);
   }
 }

@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:travelmatex/controllers/bottom_controller.dart';
 import 'package:travelmatex/controllers/destination_controller.dart';
+import 'package:travelmatex/routes/app_routes.dart';
 import 'package:travelmatex/utils/constants/constants.dart';
 import 'package:travelmatex/views/home/widgets/category_row_widget/category_row_widget.dart';
 import 'package:travelmatex/views/home/widgets/destination_card_widget/destination_card_widget.dart';
 import 'package:travelmatex/views/home/widgets/destination_tile_widget.dart/destination_tile_widget.dart';
-import 'package:travelmatex/views/main_page/main_page.dart';
+import 'package:shimmer/shimmer.dart';
+import '../../../../utils/colors/colors.dart';
 
 class WholeContentWidget extends StatelessWidget {
   WholeContentWidget({
     super.key,
   });
   final destinationController = Get.find<DestinationController>();
+  final bottonController = Get.find<BottomBarController>();
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +47,33 @@ class WholeContentWidget extends StatelessWidget {
         ),
         GetX<DestinationController>(builder: (controller) {
           if (controller.destinations.isEmpty) {
-            return const CircularProgressIndicator();
+            return SizedBox(
+              height: screenHeight * 0.33,
+              width: double.infinity,
+              child: ListView.builder(
+                itemCount: 2,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Shimmer.fromColors(
+                      baseColor: whiteColor,
+                      highlightColor: const Color.fromARGB(255, 236, 233, 233),
+                      child: Container(
+                        width: 205,
+                        decoration: const BoxDecoration(
+                            color: whiteColor,
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(20),
+                                topLeft: Radius.circular(20),
+                                bottomLeft: Radius.circular(15),
+                                bottomRight: Radius.circular(15))),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            );
           }
           return SizedBox(
             height: screenHeight * 0.33,
@@ -51,8 +81,14 @@ class WholeContentWidget extends StatelessWidget {
             child: ListView.builder(
               itemCount: controller.destinations.length,
               scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) =>
-                  DestinationCardWidget(controller: controller, index: index),
+              itemBuilder: (context, index) => InkWell(
+                  onTap: () {
+                    Get.toNamed(AppRoutes.detail, arguments: {
+                      'destination': controller.destinations[index]
+                    });
+                  },
+                  child: DestinationCardWidget(
+                      controller: controller, index: index)),
             ),
           );
         }),
@@ -88,7 +124,6 @@ class WholeContentWidget extends StatelessWidget {
         ),
         GetX<DestinationController>(builder: (controller) {
           if (controller.destinationsNearbyMe.isEmpty) {
-            //here should add shimmer
             return const CircularProgressIndicator();
           }
           return SizedBox(
@@ -97,8 +132,15 @@ class WholeContentWidget extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: controller.destinationsNearbyMe.length,
-              itemBuilder: (context, index) => DestinationTileWidget(
-                  index: index, controller: destinationController),
+              itemBuilder: (context, index) => InkWell(
+                onTap: () {
+                  Get.toNamed(AppRoutes.detail, arguments: {
+                    'destination': controller.destinationsNearbyMe[index]
+                  });
+                },
+                child: DestinationTileWidget(
+                    index: index, controller: destinationController),
+              ),
             ),
           );
         })

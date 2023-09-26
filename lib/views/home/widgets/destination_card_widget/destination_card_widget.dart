@@ -3,6 +3,7 @@ import 'package:travelmatex/controllers/destination_controller.dart';
 import 'package:travelmatex/models/destination_model.dart';
 import 'package:travelmatex/utils/colors/colors.dart';
 import 'package:travelmatex/utils/constants/constants.dart';
+import 'package:travelmatex/views/widgets/favorite_icon_widget/favorite_icon_widget.dart';
 
 class DestinationCardWidget extends StatelessWidget {
   const DestinationCardWidget(
@@ -68,9 +69,7 @@ class DestinationCardWidget extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.favorite, color: Colors.red))
+                    FavoriteIcon(destinationId: destinations[index].id!),
                   ],
                 ),
               ),
