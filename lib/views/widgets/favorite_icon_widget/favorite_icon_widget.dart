@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelmatex/controllers/favorite_controller.dart';
+import 'package:travelmatex/utils/colors/colors.dart';
 import 'package:travelmatex/utils/constants/constants.dart';
 
 class FavoriteIcon extends StatelessWidget {
@@ -23,15 +24,15 @@ class FavoriteIcon extends StatelessWidget {
         onTap: toggleFavorite,
         child: Material(
           elevation: 5,
+          color: whiteColorWithOpacity,
           borderRadius: BorderRadius.circular(50),
           child: Container(
             height: screenHeight * 0.045,
             width: screenHeight * 0.045,
-            decoration: const BoxDecoration(
-                color: Colors.white70, shape: BoxShape.circle),
+            decoration: const BoxDecoration(shape: BoxShape.circle),
             child: favoriteController.favoriteIds.contains(destinationId)
                 ? const Icon(Icons.favorite, color: Colors.red)
-                : const Icon(Icons.favorite_border, color: Colors.black),
+                : const Icon(Icons.favorite_border, color: Colors.white),
           ),
         ),
       );

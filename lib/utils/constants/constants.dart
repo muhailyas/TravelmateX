@@ -31,6 +31,7 @@ void sizeDefine(BuildContext context) {
 
 // constant heights
 
+final height05 = SizedBox(height: screenHeight * 0.01);
 final height10 = SizedBox(height: screenHeight * 0.02);
 final height20 = SizedBox(height: screenHeight * 0.04);
 

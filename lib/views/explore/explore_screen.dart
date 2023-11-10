@@ -23,7 +23,13 @@ class ExploreScreen extends StatelessWidget {
             style: googleFontStyle(fontweight: FontWeight.w500, fontsize: 25),
           ),
         ),
-        const SizedBox(height: 5),
+        const Divider(),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Text('Select district',
+              style:
+                  googleFontStyle(fontsize: 14, fontweight: FontWeight.w500)),
+        ),
         SizedBox(
           height: screenHeight * 0.05,
           width: double.infinity,
@@ -41,7 +47,13 @@ class ExploreScreen extends StatelessWidget {
             },
           ),
         ),
-        const SizedBox(height: 5),
+        const Divider(),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Text('Select district',
+              style:
+                  googleFontStyle(fontsize: 14, fontweight: FontWeight.w500)),
+        ),
         SizedBox(
           height: screenHeight * 0.05,
           width: double.infinity,
@@ -65,7 +77,7 @@ class ExploreScreen extends StatelessWidget {
             if (filterController.filteredList.isEmpty) {
               return Center(
                 child: Text(
-                  "Try another way !",
+                  "Selected combination not found !",
                   style: googleFontStyle(fontweight: FontWeight.w500),
                 ),
               );

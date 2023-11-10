@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelmatex/controllers/favorite_controller.dart';
+import 'package:travelmatex/utils/colors/colors.dart';
 import 'package:travelmatex/utils/constants/constants.dart';
 import 'package:travelmatex/views/widgets/favorite_icon_widget/favorite_icon_widget.dart';
 
@@ -12,14 +13,17 @@ class FavoriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     favoriteController.initFavorites();
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        height05,
         Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
             'Favorites',
             style: googleFontStyle(fontweight: FontWeight.w500, fontsize: 25),
           ),
         ),
+        const Divider(),
         FutureBuilder(
             future: Future.delayed(const Duration(seconds: 1)),
             builder: (context, data) {
@@ -56,6 +60,7 @@ class FavoriteScreen extends StatelessWidget {
                 }
                 return Expanded(
                   child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
                     itemCount: favoriteController.favorites.length,
                     itemBuilder: (context, index) {
                       return Padding(
@@ -77,10 +82,12 @@ class FavoriteScreen extends StatelessWidget {
                                 height: screenHeight * 0.064,
                                 width: double.infinity,
                                 decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: whiteColorWithOpacity50,
                                     borderRadius: BorderRadius.circular(20)),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: screenHeight * 0.01,
+                                      vertical: screenHeight * 0.005),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -93,10 +100,13 @@ class FavoriteScreen extends StatelessWidget {
                                             favoriteController.favorites[index]
                                                 .destinationName,
                                             style: googleFontStyle(
-                                                fontweight: FontWeight.w500,
-                                                fontsize: MediaQuery.of(context)
-                                                        .textScaleFactor *
-                                                    17),
+                                              fontweight: FontWeight.bold,
+                                              fontsize: MediaQuery.of(context)
+                                                      .textScaleFactor *
+                                                  17,
+                                              color: const Color.fromARGB(
+                                                  176, 0, 0, 0),
+                                            ),
                                           ),
                                           Text(
                                               "${favoriteController.favorites[index].destinationDistrict}, ${favoriteController.favorites[index].destinationCategory}",
@@ -105,7 +115,7 @@ class FavoriteScreen extends StatelessWidget {
                                                       MediaQuery.of(context)
                                                               .textScaleFactor *
                                                           14,
-                                                  fontweight: FontWeight.w400))
+                                                  fontweight: FontWeight.w500))
                                         ],
                                       ),
                                       FavoriteIcon(
