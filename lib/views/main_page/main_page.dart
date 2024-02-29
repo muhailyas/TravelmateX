@@ -18,7 +18,13 @@ class MainScreen extends StatelessWidget {
         child: Scaffold(
       backgroundColor: backGroundColor,
       drawer: const SlideDrawer(),
-      body: Obx(() => bottonController.pages[bottonController.index.value]),
+      body: Obx(() {
+        // return IndexedStack(
+        //   index: bottonController.index.value,
+        //   children: bottonController.pages,
+        // );
+        return bottonController.pages[bottonController.index.value];
+      }),
       bottomNavigationBar: BottomNaviagationWidget(),
     ));
   }

@@ -26,25 +26,31 @@ class DetailScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                   horizontal: MediaQuery.of(context).size.height * 0.013),
               child: SizedBox(
-                height: 70,
+                height: MediaQuery.of(context).size.height * 0.1,
                 width: double.infinity,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          destination.destinationName,
-                          style: googleFontStyle(
-                              fontsize: 25, fontweight: FontWeight.w600),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      child: FittedBox(
+                        alignment: Alignment.centerLeft,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              destination.destinationName,
+                              style: googleFontStyle(
+                                  fontsize: 25, fontweight: FontWeight.w600),
+                            ),
+                            Text(
+                              "${destination.destinationDistrict}, ${destination.destinationCategory}",
+                              style: googleFontStyle(
+                                  fontsize: 14, fontweight: FontWeight.w400),
+                            )
+                          ],
                         ),
-                        Text(
-                          "${destination.destinationDistrict}, ${destination.destinationCategory}",
-                          style: googleFontStyle(
-                              fontsize: 14, fontweight: FontWeight.w400),
-                        )
-                      ],
+                      ),
                     ),
                     //favorite
                     Padding(
@@ -75,7 +81,7 @@ class DetailScreen extends StatelessWidget {
               ),
               child: SizedBox(
                 width: double.infinity,
-                height: MediaQuery.of(context).size.height * 0.47,
+                height: MediaQuery.of(context).size.height * 0.44,
                 // main column
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
@@ -131,14 +137,16 @@ class DetailScreen extends StatelessWidget {
                                     destination.destinationLocation);
                               },
                               icon: const Icon(Icons.location_on),
-                              label: Text(
-                                'Get Direction',
-                                style: googleFontStyle(
-                                    fontsize:
-                                        MediaQuery.of(context).size.height *
-                                            0.024,
-                                    fontweight: FontWeight.w600,
-                                    color: Colors.white),
+                              label: FittedBox(
+                                child: Text(
+                                  'Get Direction',
+                                  style: googleFontStyle(
+                                      fontsize:
+                                          MediaQuery.of(context).size.height *
+                                              0.024,
+                                      fontweight: FontWeight.w600,
+                                      color: Colors.white),
+                                ),
                               ),
                               style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(

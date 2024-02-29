@@ -38,16 +38,23 @@ class DestinationTileWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20)),
                 ),
                 width10,
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      controller.destinationsNearbyMe[index].destinationName,
-                      style: googleFontStyle(fontweight: FontWeight.w400),
-                    ),
-                    Text(
-                        "${controller.destinationsNearbyMe[index].destinationDistrict}, ${controller.destinationsNearbyMe[index].destinationCategory}")
-                  ],
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.65,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      FittedBox(
+                        fit: BoxFit.contain,
+                        child: Text(
+                          controller
+                              .destinationsNearbyMe[index].destinationName,
+                          style: googleFontStyle(fontweight: FontWeight.w400),
+                        ),
+                      ),
+                      Text(
+                          "${controller.destinationsNearbyMe[index].destinationDistrict}, ${controller.destinationsNearbyMe[index].destinationCategory}")
+                    ],
+                  ),
                 ),
               ],
             ),

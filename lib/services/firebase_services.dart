@@ -11,16 +11,7 @@ class DestinationRepo {
     final collection = FirebaseFirestore.instance.collection('destinations');
     final querySnapshot = await collection.get();
     return querySnapshot.docs.map((doc) {
-      final data = doc.data();
-      return Destination(
-        id: doc.id,
-        destinationName: data['name'],
-        destinationDistrict: data['district'],
-        destinationCategory: data['category'],
-        destinationLocation: data['location'],
-        destinationDescription: data['description'],
-        destinationImageUrls: List<String>.from(data['ImageUrls']),
-      );
+      return Destination.fromSnapshot(doc);
     }).toList();
   }
 
@@ -102,16 +93,7 @@ class DestinationRepo {
     if (selectedDistricts.isEmpty && selectedCategories.isEmpty) {
       final querySnapshot = await query.get();
       return querySnapshot.docs.map((doc) {
-        final data = doc.data() as Map<String, dynamic>;
-        return Destination(
-          id: doc.id,
-          destinationName: data['name'],
-          destinationDistrict: data['district'],
-          destinationCategory: data['category'],
-          destinationLocation: data['location'],
-          destinationDescription: data['description'],
-          destinationImageUrls: List<String>.from(data['ImageUrls']),
-        );
+        return Destination.fromSnapshot(doc);
       }).toList();
     }
     // Only district selected
@@ -119,16 +101,7 @@ class DestinationRepo {
       final querySnapshot =
           await query.where('district', whereIn: selectedDistricts).get();
       return querySnapshot.docs.map((doc) {
-        final data = doc.data() as Map<String, dynamic>;
-        return Destination(
-          id: doc.id,
-          destinationName: data['name'],
-          destinationDistrict: data['district'],
-          destinationCategory: data['category'],
-          destinationLocation: data['location'],
-          destinationDescription: data['description'],
-          destinationImageUrls: List<String>.from(data['ImageUrls']),
-        );
+        return Destination.fromSnapshot(doc);
       }).toList();
     }
     // Only category selected
@@ -136,16 +109,7 @@ class DestinationRepo {
       final querySnapshot =
           await query.where('category', whereIn: selectedCategories).get();
       return querySnapshot.docs.map((doc) {
-        final data = doc.data() as Map<String, dynamic>;
-        return Destination(
-          id: doc.id,
-          destinationName: data['name'],
-          destinationDistrict: data['district'],
-          destinationCategory: data['category'],
-          destinationLocation: data['location'],
-          destinationDescription: data['description'],
-          destinationImageUrls: List<String>.from(data['ImageUrls']),
-        );
+        return Destination.fromSnapshot(doc);
       }).toList();
     }
     // Both district and category selected
@@ -160,16 +124,7 @@ class DestinationRepo {
       }).toList();
 
       return filteredDocs.map((doc) {
-        final data = doc.data() as Map<String, dynamic>;
-        return Destination(
-          id: doc.id,
-          destinationName: data['name'],
-          destinationDistrict: data['district'],
-          destinationCategory: data['category'],
-          destinationLocation: data['location'],
-          destinationDescription: data['description'],
-          destinationImageUrls: List<String>.from(data['ImageUrls']),
-        );
+        return Destination.fromSnapshot(doc);
       }).toList();
     }
   }

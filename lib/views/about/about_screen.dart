@@ -33,11 +33,6 @@ class AboutScreen extends StatelessWidget {
                   textAlign: TextAlign.justify,
                 ),
               ]),
-             
-              Text(
-                'Version 1.0.0',
-                style: googleFontStyle(),
-              )
             ],
           ),
         ),

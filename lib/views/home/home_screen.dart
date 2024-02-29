@@ -6,7 +6,8 @@ import 'package:travelmatex/controllers/destination_controller.dart';
 import 'package:travelmatex/controllers/search_controller.dart';
 import 'package:travelmatex/utils/colors/colors.dart';
 import 'package:travelmatex/utils/constants/constants.dart';
-import 'package:travelmatex/views/widgets/location_widget/location_widget.dart';
+import 'package:travelmatex/views/widgets/animation/fade_in.dart';
+import 'widgets/appbar_widget/appbar_widget.dart';
 import 'widgets/search_content_widget/search_content_widget.dart';
 import 'widgets/search_field_widget/search_field_widget.dart';
 import 'widgets/whole_content_widget/whole_contrent_widget.dart';
@@ -25,59 +26,38 @@ class HomeScreen extends StatelessWidget {
       child: Column(
         children: [
           height10,
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    StreamBuilder<DocumentSnapshot>(
-                        stream: userDocRef.snapshots(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData && snapshot.data!.exists) {
-                            Map<String, dynamic>? data =
-                                snapshot.data!.data() as Map<String, dynamic>?;
-                            return data != null
-                                ? Text(
-                                    "Hi ${data['name']},",
-                                    style: googleFontStyle(
-                                        fontsize: 25,
-                                        fontweight: FontWeight.w400,
-                                        color: Colors.grey),
-                                  )
-                                : const SizedBox();
-                          } else {
-                            return const CircularProgressIndicator();
-                          }
-                        }),
-                    Text(
-                      "Travelling Today?",
-                      style: googleFontStyle(
-                          fontsize: 35, fontweight: FontWeight.w600),
-                    ),
-                    const Row(
-                      children: [Icon(Icons.location_on), LocationAccess()],
-                    )
-                  ],
-                ),
-                IconButton(
-                    splashColor: transparentColor,
-                    splashRadius: 1,
-                    onPressed: () {
-                      Scaffold.of(context).openDrawer();
-                    },
-                    icon: const Icon(
-                      Icons.now_widgets_rounded,
-                      size: 40,
-                    ))
-              ],
+          FadeInAnimation(
+            delay: 5,
+            direction: FadeInDirection.ttb,
+            fadeOffset: 50,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  AppBarWidget(userDocRef: userDocRef),
+                  IconButton(
+                      splashColor: transparentColor,
+                      splashRadius: 1,
+                      onPressed: () {
+                        Scaffold.of(context).openDrawer();
+                      },
+                      icon: Icon(
+                        Icons.now_widgets_rounded,
+                        size: screenHeight * 0.04,
+                      ))
+                ],
+              ),
             ),
           ),
-          SearchFieldWidget(
-              searchController: searchController,
-              destinationController: destinationController),
+          FadeInAnimation(
+            delay: 5,
+            direction: FadeInDirection.btt,
+            fadeOffset: 50,
+            child: SearchFieldWidget(
+                searchController: searchController,
+                destinationController: destinationController),
+          ),
           height10,
           GetX<SearchControllerHome>(
             builder: (controller) {

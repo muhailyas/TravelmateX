@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:travelmatex/controllers/filter_controller.dart';
 import 'package:travelmatex/utils/colors/colors.dart';
 import 'package:travelmatex/utils/constants/constants.dart';
+import 'package:travelmatex/views/explore/widgets/destination_card/destination_card_widget.dart';
+import '../detail/detail_screen.dart';
 
 class CategoryListScreen extends StatelessWidget {
   CategoryListScreen({super.key});
@@ -45,64 +47,17 @@ class CategoryListScreen extends StatelessWidget {
                 itemCount: filterController.destinationByCateogryList.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      height: screenHeight * 0.25,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: NetworkImage(filterController
-                                  .destinationByCateogryList[index]
-                                  .destinationImageUrls[0]),
-                              fit: BoxFit.cover),
-                          borderRadius: BorderRadius.circular(25)),
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Container(
-                            height: screenHeight * 0.064,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        filterController
-                                            .destinationByCateogryList[index]
-                                            .destinationName,
-                                        style: googleFontStyle(
-                                            fontweight: FontWeight.w500,
-                                            fontsize: MediaQuery.of(context)
-                                                    .textScaleFactor *
-                                                17),
-                                      ),
-                                      Text(
-                                          "${filterController.destinationByCateogryList[index].destinationDistrict}, ${filterController.destinationByCateogryList[index].destinationCategory}",
-                                          style: googleFontStyle(
-                                              fontsize: MediaQuery.of(context)
-                                                      .textScaleFactor *
-                                                  14,
-                                              fontweight: FontWeight.w400))
-                                    ],
-                                  ),
-                                  const Icon(Icons.favorite)
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                  return GestureDetector(
+                    onTap: () {
+                      Get.to(const DetailScreen(),
+                          transition: Transition.fade,
+                          duration: const Duration(milliseconds: 500),
+                          arguments: {
+                            'destination': filterController.filteredList[index]
+                          });
+                    },
+                    child: DestinationCardExplore(
+                        filterController: filterController, index: index),
                   );
                 },
               );

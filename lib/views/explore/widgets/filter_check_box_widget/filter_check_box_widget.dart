@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelmatex/utils/colors/colors.dart';
@@ -40,14 +38,16 @@ class FilterCheckBox extends StatelessWidget {
                 borderRadius: BorderRadius.circular(25),
               ),
               child: Center(
-                child: Padding(
-                  padding: EdgeInsets.all(screenWidth * .02),
-                  child: Text(
-                    title,
-                    style: googleFontStyle(
-                        fontsize: 14,
-                        fontweight: FontWeight.w500,
-                        color: isSelected ? whiteColor : blackColor),
+                child: FittedBox(
+                  child: Padding(
+                    padding: EdgeInsets.all(screenWidth * .02),
+                    child: Text(
+                      title,
+                      style: googleFontStyle(
+                          fontsize: 14,
+                          fontweight: FontWeight.w500,
+                          color: isSelected ? whiteColor : blackColor),
+                    ),
                   ),
                 ),
               ),

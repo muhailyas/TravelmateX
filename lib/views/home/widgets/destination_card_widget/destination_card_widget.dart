@@ -3,6 +3,7 @@ import 'package:travelmatex/controllers/destination_controller.dart';
 import 'package:travelmatex/models/destination_model.dart';
 import 'package:travelmatex/utils/colors/colors.dart';
 import 'package:travelmatex/utils/constants/constants.dart';
+import 'package:travelmatex/views/widgets/animation/fade_in.dart';
 import 'package:travelmatex/views/widgets/favorite_icon_widget/favorite_icon_widget.dart';
 
 class DestinationCardWidget extends StatelessWidget {
@@ -24,59 +25,92 @@ class DestinationCardWidget extends StatelessWidget {
       destinations = controller.destinations;
     }
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(screenHeight * 0.01),
       child: Material(
         borderRadius: const BorderRadius.only(
-            topRight: Radius.circular(20),
-            topLeft: Radius.circular(20),
-            bottomLeft: Radius.circular(15),
-            bottomRight: Radius.circular(15)),
+            topRight: Radius.circular(10),
+            topLeft: Radius.circular(10),
+            bottomLeft: Radius.circular(10),
+            bottomRight: Radius.circular(10)),
         elevation: 2,
         child: Container(
-          width: 205,
+          width: screenWidth * 0.49,
           decoration: const BoxDecoration(
               color: whiteColor,
               borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(20),
-                  topLeft: Radius.circular(20),
-                  bottomLeft: Radius.circular(15),
-                  bottomRight: Radius.circular(15))),
+                  topRight: Radius.circular(10),
+                  topLeft: Radius.circular(10),
+                  bottomLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10))),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                decoration: BoxDecoration(
+              FadeInAnimation(
+                delay: 5,
+                direction: FadeInDirection.ltr,
+                fadeOffset: 60,
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                          topRight: Radius.circular(10),
+                          topLeft: Radius.circular(10)),
+                      image: DecorationImage(
+                          image: NetworkImage(
+                              destinations[index].destinationImageUrls[0]),
+                          fit: BoxFit.cover)),
+                  height: screenHeight * 0.23,
+                  width: double.infinity,
+                  child: ClipRRect(
                     borderRadius: const BorderRadius.only(
-                        topRight: Radius.circular(20),
-                        topLeft: Radius.circular(20)),
-                    image: DecorationImage(
-                        image: NetworkImage(
-                            destinations[index].destinationImageUrls[0]),
-                        fit: BoxFit.cover)),
-                height: screenHeight * 0.23,
-                width: double.infinity,
+                        topRight: Radius.circular(10),
+                        topLeft: Radius.circular(10)),
+                    child: FadeInImage(
+                      placeholder: const AssetImage(
+                          'assets/modern-flat-icon-landscape_203633-11062.avif'), // Placeholder image
+                      image: NetworkImage(destinations[index]
+                          .destinationImageUrls[0]), // Network image
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.02),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
                       width: screenWidth * 0.33,
-                      child: Text(
-                        destinations[index].destinationName,
-                        style: googleFontStyle(fontweight: FontWeight.w400),
-                        overflow: TextOverflow.ellipsis,
+                      child: FadeInAnimation(
+                        delay: 5,
+                        direction: FadeInDirection.rtl,
+                        fadeOffset: 50,
+                        child: Text(
+                          destinations[index].destinationName,
+                          style: googleFontStyle(fontweight: FontWeight.w500),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                     ),
-                    FavoriteIcon(destinationId: destinations[index].id!),
+                    FadeInAnimation(
+                        delay: 5,
+                        direction: FadeInDirection.ttb,
+                        fadeOffset: 50,
+                        child: FavoriteIcon(
+                            destinationId: destinations[index].id!)),
                   ],
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 2.0),
-                child: Text(
-                    "${destinations[index].destinationDistrict}, ${destinations[index].destinationCategory}"),
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.02),
+                child: FadeInAnimation(
+                  delay: 5,
+                  direction: FadeInDirection.ltr,
+                  fadeOffset: 50,
+                  child: Text(
+                      "${destinations[index].destinationDistrict}, ${destinations[index].destinationCategory}",
+                      overflow: TextOverflow.ellipsis),
+                ),
               )
             ],
           ),

@@ -53,7 +53,7 @@ class DestinationCardExplore extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _buildDestinationDetails(context),
+          FittedBox(child: _buildDestinationDetails(context)),
           FavoriteIcon(destinationId: filterController.filteredList[index].id!),
         ],
       ),

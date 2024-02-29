@@ -8,6 +8,50 @@ import 'package:travelmatex/views/slide_drawer/widgets/edit_tile/edit_tile_widge
 import 'widgets/drawer_header/drawer_header_widget.dart';
 import 'widgets/logout_tile_widget/logout_tile_widget.dart';
 
+// class SlideDrawer extends StatelessWidget {
+//   const SlideDrawer({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final user = FirebaseAuth.instance.currentUser;
+//     final DocumentReference userDocRef =
+//         FirebaseFirestore.instance.collection('users').doc(user!.uid);
+//     return Drawer(
+//       width: MediaQuery.of(context).size.width * .6,
+//       child: Column(
+//         children: [
+//           DrawerHeaderWidget(userDocRef: userDocRef),
+//           EditTileWidget(userDocRef: userDocRef),
+//           const Divider(),
+//           ListTile(
+//             leading: const Icon(Icons.info),
+//             title: Text(
+//               "About",
+//               style: googleFontStyle(fontsize: 18, fontweight: FontWeight.w400),
+//             ),
+//             onTap: () {
+//               Get.toNamed(AppRoutes.about);
+//             },
+//           ),
+//           const Divider(),
+//           const LogoutTileWidget(),
+//           const Divider(),
+//           const Spacer(),
+//           Padding(
+//             padding: const EdgeInsets.only(bottom: 5),
+//             child: Text("version: 1.0.0+1",
+//                 style: googleFontStyle(
+//                     fontsize: 16,
+//                     color: Colors.grey,
+//                     fontweight: FontWeight.w400)),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
+import 'dart:ui';
+
 class SlideDrawer extends StatelessWidget {
   const SlideDrawer({super.key});
 
@@ -16,24 +60,23 @@ class SlideDrawer extends StatelessWidget {
     final user = FirebaseAuth.instance.currentUser;
     final DocumentReference userDocRef =
         FirebaseFirestore.instance.collection('users').doc(user!.uid);
+
+    // Wrap the Drawer with a BackdropFilter to apply the blur effect
     return Drawer(
       width: MediaQuery.of(context).size.width * .6,
-      child: ListView(
+      child: Column(
         children: [
           DrawerHeaderWidget(userDocRef: userDocRef),
           EditTileWidget(userDocRef: userDocRef),
           const Divider(),
           ListTile(
-            leading: const Icon(Icons.ios_share_rounded),
-            title: Text("Share", style: googleFontStyle(fontsize: 18, fontweight: FontWeight.w400),),
-            onTap: () async {
-              // await _onShare(context);
-            },
-          ),
-          const Divider(),
-          ListTile(
             leading: const Icon(Icons.info),
-            title:  Text("About", style: googleFontStyle(fontsize: 18, fontweight: FontWeight.w400),),
+            title: Text(
+              "About",
+              style: googleFontStyle(
+                  fontsize: MediaQuery.of(context).textScaleFactor * 18,
+                  fontweight: FontWeight.w400),
+            ),
             onTap: () {
               Get.toNamed(AppRoutes.about);
             },
@@ -41,16 +84,17 @@ class SlideDrawer extends StatelessWidget {
           const Divider(),
           const LogoutTileWidget(),
           const Divider(),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 5),
+            child: Text("version: 1.0.0+1",
+                style: googleFontStyle(
+                    fontsize: MediaQuery.of(context).textScaleFactor * 16,
+                    color: Colors.grey,
+                    fontweight: FontWeight.w400)),
+          )
         ],
       ),
     );
   }
-
-  // _onShare(context) async {
-  //   final box = context.findRenderObject() as RenderBox?;
-  //   await Share.share(
-  //       'https://play.google.com/store/apps/details?id=com.waywizard.travelmate',
-  //       subject: '',
-  //       sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
-  // }
 }

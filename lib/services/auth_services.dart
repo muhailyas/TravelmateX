@@ -29,17 +29,6 @@ class AuthServices {
     return ValidationResults.somethingWentWrong;
   }
 
-  static signinAdmin(
-      String email, String password, BuildContext context) async {
-    try {
-      await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
-      // Get.to(const ScreenAdmin());
-    } on FirebaseAuthException catch (e) {
-      if (e.code == '') {}
-    }
-  }
-
   static Future<ValidationResults> signIn(
       String email, String password, BuildContext context) async {
     var connectivityResult = await Connectivity().checkConnectivity();
@@ -48,11 +37,9 @@ class AuthServices {
     }
 
     try {
-      final userCredential = await FirebaseAuth.instance
+      await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-      return userCredential.user!.uid == 'EQv2jxY4JtW94G8tNOxriloyRNt1'
-          ? ValidationResults.successfull
-          : ValidationResults.userNotFound;
+      return ValidationResults.successfull;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         return ValidationResults.userNotFound;

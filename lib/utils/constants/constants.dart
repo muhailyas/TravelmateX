@@ -15,7 +15,8 @@ enum ValidationResults {
   wrongPassword,
   loggedIn,
   newUser,
-  loggin
+  loggin,
+  foundAdmin
 }
 
 enum Network { hasNetwork, notAvailable }

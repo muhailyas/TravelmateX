@@ -16,7 +16,9 @@ class LogoutTileWidget extends StatelessWidget {
       leading: const Icon(Icons.logout),
       title: Text(
         "Logout",
-        style: googleFontStyle(fontsize: 18, fontweight: FontWeight.w400),
+        style: googleFontStyle(
+            fontsize: MediaQuery.of(context).textScaleFactor * 18,
+            fontweight: FontWeight.w400),
       ),
       onTap: () {
         showDialog(
@@ -37,8 +39,7 @@ class LogoutTileWidget extends StatelessWidget {
                             Get.snackbar(
                                 'Network', 'Check your internet connection');
                           } else {
-                            Get.offAllNamed(
-                                AppRoutes.login);
+                            Get.offAllNamed(AppRoutes.login);
                           }
                         },
                         icon: const Icon(Icons.check),

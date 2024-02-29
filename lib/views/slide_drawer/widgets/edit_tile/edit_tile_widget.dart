@@ -15,11 +15,12 @@ class EditTileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: const Icon(
-        Icons.edit),
+      leading: const Icon(Icons.edit),
       title: Text(
         "Edit name",
-        style: googleFontStyle(fontsize: 18, fontweight: FontWeight.w400),
+        style: googleFontStyle(
+            fontsize: MediaQuery.of(context).textScaleFactor * 18,
+            fontweight: FontWeight.w400),
       ),
       onTap: () {
         showDialog(
@@ -31,13 +32,7 @@ class EditTileWidget extends StatelessWidget {
               builder: (BuildContext context, snapshot) {
                 if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
-                }
-
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator();
-                }
-
-                if (snapshot.hasData && snapshot.data!.exists) {
+                } else if (snapshot.hasData && snapshot.data!.exists) {
                   Map<String, dynamic>? data =
                       snapshot.data!.data() as Map<String, dynamic>?;
                   if (data != null) {

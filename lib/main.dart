@@ -13,12 +13,12 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  DependencyInjection.onInit();
   runApp(const MyApp());
+  DependencyInjection.onInit();
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key}); 
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +26,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       getPages: AppRoutes.getPages,
       debugShowCheckedModeBanner: false,
-      title: 'TravelmateX',
+      title: 'Travelmate',
       home: StreamBuilder<User?>(
-        
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {

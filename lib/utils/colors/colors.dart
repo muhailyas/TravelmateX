@@ -7,4 +7,5 @@ const blackColor = Colors.black;
 
 const whiteColorWithOpacity = Color.fromARGB(104, 255, 255, 255);
 const whiteColorWithOpacity50 = Color.fromARGB(104, 255, 255, 255);
+const whiteColorWithOpacity150 = Color.fromARGB(104, 245, 239, 239);
 const textColorBlackWithOpacity = Color.fromARGB(176, 0, 0, 0);
